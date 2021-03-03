@@ -21,4 +21,12 @@ class Subscriber
             $subject->setImportMode(true);
         }
     }
+    
+    public function beforesendUnsubscriptionEmail(\Magento\Newsletter\Model\Subscriber $subject)
+    {
+        if ($this->scopeConfig->getValue('newsletter/subscription/disable_newsletter_success',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
+            $subject->setImportMode(true);
+        }
+    }
 }
